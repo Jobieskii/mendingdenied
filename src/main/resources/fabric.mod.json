@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "mendingdenied",
+  "version": "${version}",
+  "name": "Mendingdenied",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/mendingdenied/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "jobieskii.mendingdenied.Mendingdenied"
+    ]
+  },
+  "mixins": [
+    "mendingdenied.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "loom:injected_interfaces": {
+      "net/minecraft/class_1899": ["jobieskii/mendingdenied/hasAcceptableItem"]
+    }
+  }
+}
