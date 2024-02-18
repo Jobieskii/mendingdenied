@@ -1,8 +1,5 @@
 package jobieskii.mendingdenied;
 
-import java.io.*;
-import java.util.*;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
@@ -13,7 +10,13 @@ import net.fabricmc.loader.impl.util.log.LogCategory;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import org.spongepowered.asm.mixin.FabricUtil;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Config {
     public static Set<Item> blacklist;
@@ -22,7 +25,7 @@ public class Config {
                 .setPrettyPrinting()
                 .create();
         String filename = FabricLoader.getInstance().getConfigDir() + "/" + Mendingdenied.MODID + ".json";
-        blacklist = new HashSet<Item>();
+        blacklist = new HashSet<>();
 
         try {
             FileReader fr = new FileReader(filename);
