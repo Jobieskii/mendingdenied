@@ -16,6 +16,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class Config {
@@ -45,9 +46,9 @@ public class Config {
     private static void parse(FileReader file, Gson gson) throws JsonSyntaxException, JsonIOException{
         String[] itemNames = gson.fromJson(file, String[].class);
         for (String name : itemNames) {
-            Item item = Registries.ITEM.get(new Identifier(name));
-            if (item == null) Log.error(LogCategory.GENERAL, Mendingdenied.MODID + ": incorrect item in config \""+name+"\"");
-            else blacklist.add(item);
+            Optional<Item> item = Registries.ITEM.getOrEmpty(new Identifier(name));
+            if (!item.isPresent()) Log.error(LogCategory.GENERAL, Mendingdenied.MODID + ": incorrect item in config \""+name+"\"");
+            else blacklist.add(item.get());
         }
     }
 }
